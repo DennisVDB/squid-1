@@ -4,7 +4,8 @@ val squidIsSnapshot: Boolean = squidVersion endsWith "-SNAPSHOT"
 
 lazy val commonSettings = Seq(
   version := squidVersion,
-  scalaVersion := "2.11.11",
+  //scalaVersion := "2.11.11",
+  scalaVersion := "2.12.4",
   organization := "ch.epfl.data",
   autoCompilerPlugins := true,
   scalacOptions ++= Seq("-feature", "-language:implicitConversions", "-language:higherKinds", "-language:postfixOps"
@@ -17,7 +18,8 @@ lazy val commonSettings = Seq(
   //addCompilerPlugin("org.scalamacros" % "paradise" % paradiseVersion cross CrossVersion.full),
   libraryDependencies ++= Seq(
     "junit" % "junit-dep" % "4.10" % "test",
-    "org.scalatest" % "scalatest_2.11" % "2.2.0" % "test"
+    //"org.scalatest" % "scalatest_2.11" % "2.2.0" % "test"
+    "org.scalatest" % "scalatest_2.12" % "3.0.4" % "test"
   ),
   libraryDependencies ++= (
       if (scalaVersion.value.startsWith("2.10")) List("org.scalamacros" %% "quasiquotes" % paradiseVersion)
@@ -70,21 +72,21 @@ val SCVersion = "0.1.4-SNAPSHOT"
 
 val currentIsSnapshot = true
 
-lazy val scBackendMacros = (project in file("sc-backend/macros")).
-  settings(commonSettings: _*).
-  settings(
-    name := "squid-sc-backend-macros",
-    libraryDependencies ++= Seq("ch.epfl.data" % "sc-pardis-compiler_2.11" % SCVersion)
-  ).
-  dependsOn(main)
-lazy val scBackend = (project in file("sc-backend")).
-  dependsOn(scBackendMacros).
-  dependsOn(main % "test->test").
-  settings(commonSettings: _*).
-  settings(
-    name := "squid-sc-backend",
-    libraryDependencies ++= Seq("ch.epfl.data" % "sc-pardis-compiler_2.11" % SCVersion)
-  )
+//lazy val scBackendMacros = (project in file("sc-backend/macros")).
+//  settings(commonSettings: _*).
+//  settings(
+//    name := "squid-sc-backend-macros",
+//    libraryDependencies ++= Seq("ch.epfl.data" % "sc-pardis-compiler_2.11" % SCVersion)
+//  ).
+//  dependsOn(main)
+//lazy val scBackend = (project in file("sc-backend")).
+//  dependsOn(scBackendMacros).
+//  dependsOn(main % "test->test").
+//  settings(commonSettings: _*).
+//  settings(
+//    name := "squid-sc-backend",
+//    libraryDependencies ++= Seq("ch.epfl.data" % "sc-pardis-compiler_2.11" % SCVersion)
+//  )
 
 
 lazy val example = (project in file("example")).
